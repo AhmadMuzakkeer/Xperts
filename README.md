@@ -1,84 +1,218 @@
-# Xperts - Laravel 
+# Xperts - Laravel Mini CRM
 
-# How to run the project
+A Laravel-based application for managing **Companies** and **Employees** with authentication, CRUD functionality, API endpoints, and database relationships.
 
-1. Composer install
-2. cp .env.example .env
-3. php artisan key:generate
+---
 
-4. create database (preferred mysql)
-    
-    -go to .env
-    -find db section
+# 🚀 How to Run the Project
 
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=(Your db name )
-    DB_USERNAME=root
-    DB_PASSWORD=
+### 1. Install Dependencies
 
+```
+composer install
+```
 
-5. php artisan migrate --> this will create all necessary table 
+### 2. Setup Environment File
 
+```
+cp .env.example .env
+php artisan key:generate
+```
 
-### Basic Laravel Authentication: Allows administrators to log in. [✅]
+---
 
+### 3. Configure Database (MySQL recommended)
 
-6. php artisan db:seed --> only seed admin creds 
+Open `.env` and update the DB section:
 
-    -email = admin@admin.com
-    -pass = password
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-    ### Database Seeds: Utilize database seeds to create the initial user with the email admin@admin.com and the password  "password." [✅]
+---
 
-7.  📌only run this if want to seed 20 company info and employee without logo
+### 4. Run Database Migration
 
-    php artisan db:seed --class=CompanySeeder  --> will seed 20 company info 
-    php artisan db:seed --class=EmployeeSeeder --> will seed 5-12 employees for each company
+This will create all required tables.
 
-8.   npm install 
-9.   npm run dev
-10.  php artisan serve
+```
+php artisan migrate
+```
 
-### CRUD Functionality: Implement Create / Read / Update / Delete operations for two main menu items: Companies and Employees[✅]
+---
 
-### Companies Database Table: Includes fields such as Name (required), email, logo (minimum 100x100), and website [✅]
+## ✅ Implemented Features
 
-### Employees Database Table: Includes fields like First Name (required), Last Name (required), Company (foreign key linking to Companies), email, and phone [✅]
+### Authentication
 
-### Database Migrations: Use database migrations to create the specified schemas and use Eloquent models to define relationships between data tables [✅]
+Basic Laravel authentication implemented for admin login.
 
-### Validation and Pagination: Implement Laravel's validation functions using Request classes. Utilize Laravel's pagination feature to display lists of Companies and Employees with 10 entries per page. [✅]
+* [x] Admin authentication
+* [x] Registration disabled
 
-### Resource Controllers: Employ basic Laravel resource controllers with default methods (index, create, store, etc.). [✅]
+---
 
-### Authentication and Theme: Use Laravel's starter kit for authentication and basic themes; However, disable the registration functionality. [✅]
+### Database Seeds
 
-### API and Web Routes: Make use of both API and web routes. [✅]
+Create initial admin credentials:
 
+```
+php artisan db:seed
+```
 
+Admin login:
 
-11.  php artisan storage:link
+Email: [admin@admin.com](mailto:admin@admin.com)
+Password: password
 
-### Logo Storage: Store company logos in the storage/app/public folder and ensure accessibility from the public domain. [✅]
+* [x] Admin user seeded successfully
 
+---
 
-### Testing: Ensure that the API can be tested using Postman or any other preferred alternatives. [✅]
+### Optional Demo Data
 
-http://127.0.0.1:8000/api/v1/companies --> to fetch all company data
-http://127.0.0.1:8000/api/v1/companies/1 --> to fetch single company with list of employee. 'employee count' show as an attribute
+Seed sample companies and employees:
 
-### API Response: Create an API endpoint that returns a single company with a list of employees. Include the 'employee_count' as an attribute in the API response model. [✅]
+```
+php artisan db:seed --class=CompanySeeder
+php artisan db:seed --class=EmployeeSeeder
+```
 
+This will:
 
+* Create **20 companies**
+* Create **5–12 employees for each company**
 
-## 📌 Author
+Note: Logos are not included in seeded companies.
+
+---
+
+### Install Frontend Dependencies
+
+```
+npm install
+npm run dev
+```
+
+---
+
+### Start the Server
+
+```
+php artisan serve
+```
+
+---
+
+# 📦 Implemented System Requirements
+
+### CRUD Functionality
+
+* [x] Create / Read / Update / Delete Companies
+* [x] Create / Read / Update / Delete Employees
+
+---
+
+### Companies Table
+
+Fields implemented:
+
+* [x] Name (required)
+* [x] Email
+* [x] Logo (minimum 100x100)
+* [x] Website
+
+---
+
+### Employees Table
+
+Fields implemented:
+
+* [x] First Name (required)
+* [x] Last Name (required)
+* [x] Company (Foreign Key)
+* [x] Email
+* [x] Phone
+
+---
+
+### Laravel Architecture
+
+* [x] Database migrations
+* [x] Eloquent relationships
+* [x] Resource controllers
+* [x] Form request validation
+* [x] Pagination (10 records per page)
+
+---
+
+### Storage Setup
+
+Run this command to allow logo access from public directory:
+
+```
+php artisan storage:link
+```
+
+* [x] Company logos stored in `storage/app/public`
+
+---
+
+### Routing
+
+* [x] Web routes implemented
+* [x] API routes implemented
+
+---
+
+# 🔗 API Endpoints
+
+Fetch all companies:
+
+```
+http://127.0.0.1:8000/api/v1/companies
+```
+
+Fetch a single company with employees:
+
+```
+http://127.0.0.1:8000/api/v1/companies/1
+```
+
+Response includes:
+
+* Company details
+* List of employees
+* `employee_count` attribute
+
+---
+
+### Example API Response
+
+```
+{
+  "id": 1,
+  "name": "Company Name",
+  "email": "company@email.com",
+  "website": "https://company.com",
+  "employee_count": 8,
+  "employees": [...]
+}
+```
+
+---
+
+# 🧪 API Testing
+
+* [x] Tested using Postman
+
+---
+
+# 👨‍💻 Author
 
 Developed by **Ahmad Muzakkeer**
-
-
-
-
-
-
